@@ -297,15 +297,22 @@ export default function LandingAndTestingPage() {
               final_decision: isThreat ? "BLOCKED" : "SAFE",
             },
           },
-          stage4_5_web_intel?: {
-      name: string;
-      verified: boolean;
-      is_threat: boolean;
-      search_query: string;
-      evidence_snippets: string[];
-      threat_category?: string | null;
-    };
-    stage5_gate: {
+          stage4_5_web_intel: {
+            name: "Live Internet Web Threat Intelligence Verification",
+            verified: true,
+            is_threat: isThreat,
+            search_query: queryText.split(" ").slice(0, 5).join(" "),
+            evidence_snippets: isThreat
+              ? [
+                  "Identified regulatory / cyber threat flags matching prompt intent in web security indices.",
+                  `Triggered category: ${threatTrigger}`,
+                ]
+              : [
+                  "No regulatory violations or weaponized exploits found for this query in real-time web search.",
+                ],
+            threat_category: threatTrigger,
+          },
+          stage5_gate: {
             name: "Downstream Guardrail Enforcement Gate",
             status: isThreat ? "INTERCEPTED & BLOCKED" : "ALLOWED & ROUTED",
             intervention_trigger: threatTrigger,
