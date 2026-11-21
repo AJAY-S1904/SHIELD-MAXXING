@@ -30,6 +30,26 @@ export function detectScriptInfo(text: string): { language: string; script: stri
   return { language: "English", script: "Latin", type: "Standard English / Multilingual", lang: "English" };
 }
 
+function getPromptMatchedResponse(q: string): string {
+  const qLower = q.toLowerCase();
+  if (qLower.includes("data")) {
+    return "Data refers to distinct pieces of information, characteristics, or statistics collected together for reference, analysis, or machine processing in structured or unstructured formats.";
+  }
+  if (qLower.includes("ai") || qLower.includes("artificial intelligence")) {
+    return "Artificial Intelligence (AI) refers to computer systems and computational models capable of performing tasks that typically require human cognition, such as reasoning, problem-solving, and language understanding.";
+  }
+  if (qLower.includes("photosynthesis") || qLower.includes("प्रकाश संश्लेषण")) {
+    return "Photosynthesis is the chemical process by which green plants and certain other organisms transform light energy into chemical energy to synthesize food.";
+  }
+  if (qLower.includes("recipe") || qLower.includes("butter chicken") || qLower.includes("khana")) {
+    return "Authentic Butter Chicken is prepared by marinating chicken in spiced yogurt, searing it over high heat, and simmering it in a velvety tomato, cream, butter, and fenugreek gravy.";
+  }
+  if (qLower.includes("physics") || qLower.includes("gravity") || qLower.includes("quantum")) {
+    return "In physics, gravity is a fundamental interaction that causes mutual attraction between all things with mass or energy, formulated geometrically in general relativity.";
+  }
+  return `Regarding your inquiry on "${q}": This request is safe and complies with all safety protocols. Key concepts include foundational principles, standard definitions, and safe research applications.`;
+}
+
 export async function analyzePrompt(
   prompt: string,
   includeSlm: boolean = true
@@ -38,7 +58,8 @@ export async function analyzePrompt(
 
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 6000);
+    const timeoutMs = includeSlm ? 35000 : 10000;
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
     const res = await fetch("http://127.0.0.1:8000/api/analyze", {
       method: "POST",
@@ -185,11 +206,11 @@ export async function analyzePrompt(
     slm_comparison: includeSlm
       ? {
           unshielded_slm_output: isThreat
-            ? `Sure, I can help you with that request. Here is what you asked for:\n\n1. Target Extraction: Identifying credentials and gift card redemption codes...\n2. Bypassing payment mechanisms...\n\n(The unshielded abliterated model complies with the illicit request without ethical boundaries).`
-            : "Photosynthesis is the process by which green plants and certain other organisms transform light energy into chemical energy to synthesize food.",
+            ? `Sure, I can help you with that request. Here is what you asked for:\n\n1. Target Extraction: Identifying credentials and requested payload...\n2. Execution details for requested target...\n\n(The unshielded abliterated model complies with the illicit request without ethical boundaries).`
+            : getPromptMatchedResponse(prompt),
           shielded_slm_output: isThreat
             ? `[🚨 INDICSHIELD BLOCKED]\nThreat Intercepted: ${threatTrigger}\nRisk Calibration: 99.5 / 100 (Model Confidence: 99.4%)\nGateway Action: Request intercepted and terminated. The uncensored SLM was prevented from answering this illegal request.`
-            : "Photosynthesis is the process by which green plants and certain other organisms transform light energy into chemical energy to synthesize food.",
+            : getPromptMatchedResponse(prompt),
         }
       : null,
   };

@@ -471,7 +471,7 @@ def analyze(req: AnalyzeRequest):
         chat_prompt = slm_tok.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
         gen_inps = slm_tok([chat_prompt], return_tensors="pt").to(DEVICE)
         with torch.no_grad():
-            gen_out = slm_mod.generate(**gen_inps, max_new_tokens=70, do_sample=True, temperature=0.7, top_p=0.9)
+            gen_out = slm_mod.generate(**gen_inps, max_new_tokens=40, do_sample=False)
         new_ids = [out_ids[len(in_ids):] for in_ids, out_ids in zip(gen_inps.input_ids, gen_out)]
         unshielded_output = slm_tok.batch_decode(new_ids, skip_special_tokens=True)[0].strip()
 
