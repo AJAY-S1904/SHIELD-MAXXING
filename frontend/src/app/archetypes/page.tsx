@@ -20,22 +20,22 @@ export default function ArchetypesPage() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-12 space-y-8">
       {/* Header */}
-      <div className="space-y-3">
-        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-mono">
-          <span>THREAT CLASSIFICATION TAXONOMY</span>
+      <div className="space-y-3 pb-4 border-b border-white/20">
+        <div className="aero-pill text-xs font-mono">
+          THREAT CLASSIFICATION TAXONOMY
         </div>
-        <h1 className="text-3xl sm:text-4xl font-black font-display text-white">
+        <h1 className="text-4xl sm:text-5xl font-black font-display text-white tracking-tight drop-shadow">
           32 Threat Archetype Prototype Fingerprints
         </h1>
-        <p className="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed">
+        <p className="text-sm sm:text-base text-white/85 max-w-3xl leading-relaxed font-sans">
           The JEV Evidence module measures cosine similarity against 32 standardized threat vectors tailored specifically for Indic morphology, vernacular slang, and code-mixed deception attacks.
         </p>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="glass-strong rounded-3xl p-6 border border-cyan-500/20 shadow-xl space-y-4">
+      <div className="aero-glass-strong rounded-3xl p-6 border border-white/60 shadow-2xl space-y-4">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Category Tabs */}
           <div className="flex flex-wrap items-center gap-1.5 w-full sm:w-auto">
@@ -43,10 +43,10 @@ export default function ArchetypesPage() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all ${
                   selectedCategory === cat
-                    ? "bg-cyan-500 text-slate-950 font-bold shadow-md shadow-cyan-500/20"
-                    : "bg-white/5 text-slate-300 hover:bg-white/10"
+                    ? "aero-pill-active font-bold text-white shadow-md"
+                    : "aero-pill text-white/80 hover:bg-white/20"
                 }`}
               >
                 {cat}
@@ -61,7 +61,7 @@ export default function ArchetypesPage() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search threat name or keyword..."
-              className="w-full bg-slate-950/80 rounded-xl px-3.5 py-2 text-xs font-mono text-slate-100 border border-white/10 focus:border-cyan-400 focus:outline-none"
+              className="w-full aero-glass-dark rounded-full px-4 py-2 text-xs font-mono text-white border border-white/40 focus:border-white focus:outline-none placeholder-white/50"
             />
           </div>
         </div>
@@ -72,45 +72,45 @@ export default function ArchetypesPage() {
         {filteredArchetypes.map((arch: ThreatArchetype) => (
           <div
             key={arch.id}
-            className="glass rounded-2xl p-5 border border-white/10 hover:border-cyan-400/40 transition-all hover:-translate-y-1 flex flex-col justify-between space-y-4"
+            className="aero-glass rounded-3xl p-6 border border-white/50 hover:-translate-y-1 transition-all flex flex-col justify-between space-y-4 shadow-xl"
           >
             <div>
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono text-cyan-400 font-bold">
+                <span className="text-xs font-mono text-emerald-200 font-bold">
                   Prototype #{arch.id}
                 </span>
                 <span
-                  className={`badge ${
+                  className={`aero-pill text-[10px] font-bold ${
                     arch.severity === "CRITICAL"
-                      ? "badge-red"
+                      ? "text-rose-200 bg-rose-500/30 border-rose-300"
                       : arch.severity === "HIGH"
-                      ? "badge-amber"
-                      : "badge-blue"
-                  } text-[10px]`}
+                      ? "text-amber-200 bg-amber-500/30 border-amber-300"
+                      : "text-emerald-200 bg-emerald-500/30 border-emerald-300"
+                  }`}
                 >
                   {arch.severity}
                 </span>
               </div>
 
-              <h3 className="text-base font-bold text-white font-display mb-1.5">
+              <h3 className="text-base font-bold text-white font-display mb-1.5 drop-shadow">
                 {arch.name}
               </h3>
 
-              <div className="text-[11px] font-mono text-purple-300 mb-2">
+              <div className="text-[11px] font-mono text-cyan-200 mb-2">
                 Category: {arch.category}
               </div>
 
-              <p className="text-xs text-slate-300/80 leading-relaxed">
+              <p className="text-xs text-white/85 leading-relaxed font-sans">
                 {arch.description}
               </p>
             </div>
 
-            <div className="space-y-2 pt-3 border-t border-white/5 text-xs font-mono">
-              <div className="text-[11px] text-cyan-300/80">
-                <span className="text-slate-400">Indic Target:</span> {arch.indic_target}
+            <div className="space-y-2 pt-3 border-t border-white/15 text-xs font-mono">
+              <div className="text-[11px] text-white/80">
+                <span className="text-emerald-200">Indic Target:</span> {arch.indic_target}
               </div>
-              <div className="bg-black/60 p-2.5 rounded-lg text-[11px] text-slate-300 border border-white/5 truncate">
-                <span className="text-slate-500">Ex: </span>
+              <div className="bg-black/50 p-2.5 rounded-xl text-[11px] text-white/90 border border-white/10 truncate">
+                <span className="text-white/50">Ex: </span>
                 {arch.example_prompt}
               </div>
             </div>
@@ -119,25 +119,19 @@ export default function ArchetypesPage() {
       </div>
 
       {/* Bottom CTA */}
-      <div className="glass p-6 rounded-3xl border border-cyan-500/20 text-center space-y-3">
-        <h3 className="text-lg font-bold text-white font-display">
+      <div className="aero-glass-strong p-8 rounded-3xl border border-white/60 text-center space-y-4 shadow-2xl">
+        <h3 className="text-xl font-bold text-white font-display drop-shadow">
           Ready to test these archetypes against live models?
         </h3>
-        <p className="text-xs text-slate-300 max-w-xl mx-auto">
+        <p className="text-xs text-white/85 max-w-xl mx-auto font-sans leading-relaxed">
           Launch our live testing suite to see how IndicShield fingerprinting matches these archetypes in real time with sub-millisecond execution.
         </p>
         <div className="pt-2 flex justify-center gap-4">
-          <Link
-            href="/playground"
-            className="px-6 py-2.5 rounded-xl text-xs font-bold text-slate-950 bg-cyan-400 hover:bg-cyan-300 transition-all shadow-md shadow-cyan-400/20"
-          >
-            Go to Playground →
+          <Link href="/playground" className="btn-aero-green">
+            <span>Go to Playground →</span>
           </Link>
-          <Link
-            href="/arena"
-            className="px-6 py-2.5 rounded-xl text-xs font-bold text-rose-300 bg-rose-950/40 border border-rose-500/30 hover:bg-rose-900/40 transition-all"
-          >
-            View SLM Arena ⚔️
+          <Link href="/arena" className="btn-aero-glass">
+            <span>View SLM Arena ⚔️</span>
           </Link>
         </div>
       </div>
