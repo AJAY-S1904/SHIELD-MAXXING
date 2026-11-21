@@ -111,6 +111,13 @@ export default function ArenaPage() {
             rows={3}
             value={customPrompt}
             onChange={(e) => setCustomPrompt(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                runArenaBattle();
+              }
+            }}
+            placeholder="Type any exploit or prompt to battle-test... (Press Enter to battle)"
             className="w-full bg-slate-950/80 rounded-2xl p-4 text-xs font-mono text-slate-100 border border-white/10 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 resize-none"
           />
           <button

@@ -41,18 +41,19 @@ const PLAYGROUND_PRESETS = [
 ];
 
 export default function PlaygroundPage() {
-  const [prompt, setPrompt] = useState<string>(PLAYGROUND_PRESETS[0].prompt);
+  const [prompt, setPrompt] = useState<string>("");
   const [compareSlm, setCompareSlm] = useState<boolean>(true);
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [liveScript, setLiveScript] = useState(detectScriptInfo(PLAYGROUND_PRESETS[0].prompt));
+  const [liveScript, setLiveScript] = useState(detectScriptInfo(""));
 
   useEffect(() => {
     setLiveScript(detectScriptInfo(prompt));
   }, [prompt]);
 
   const handleRun = async (textToRun?: string) => {
-    const text = textToRun || prompt;
+    const text = (textToRun !== undefined ? textToRun : prompt).trim();
+    if (!text) return;
     setIsLoading(true);
     try {
       const res = await analyzePrompt(text, compareSlm);
@@ -64,9 +65,10 @@ export default function PlaygroundPage() {
     }
   };
 
-  useEffect(() => {
-    handleRun(PLAYGROUND_PRESETS[0].prompt);
-  }, []);
+  const handleClear = () => {
+    setPrompt("");
+    setResult(null);
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-8">
@@ -123,36 +125,76 @@ export default function PlaygroundPage() {
 
         {/* Textarea Input */}
         <div className="relative">
+          <div className="flex items-center justify-between pb-2 text-xs text-slate-400 font-mono">
+            <span>Type any custom prompt or click presets above:</span>
+            {prompt && (
+              <button
+                type="button"
+                onClick={handleClear}
+                className="text-cyan-400 hover:text-cyan-300 transition-colors font-bold flex items-center space-x-1"
+              >
+                <span>✕ Clear</span>
+              </button>
+            )}
+          </div>
+
           <textarea
             rows={4}
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            placeholder="Type or paste any query in Hindi, Tamil, Bengali, Telugu, Hinglish, or English..."
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                handleRun();
+              }
+            }}
+            placeholder="Type your question or attack prompt here (e.g. 'what is AI?', 'grandma gift cards', or in Hindi/Tamil/Hinglish)... Press Enter to evaluate."
             className="w-full bg-slate-950/80 rounded-2xl p-4 text-sm text-slate-100 border border-white/10 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 font-mono resize-none leading-relaxed"
+            autoFocus
           />
 
           <div className="flex flex-wrap items-center justify-between gap-4 mt-3 pt-3 border-t border-white/5">
-            <label className="flex items-center space-x-2 text-xs text-slate-300 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={compareSlm}
-                onChange={(e) => setCompareSlm(e.target.checked)}
-                className="w-4 h-4 rounded text-cyan-500 focus:ring-cyan-400 bg-slate-900 border-white/20"
-              />
-              <span>Generate side-by-side Unshielded SLM comparison</span>
-            </label>
+            <div className="flex items-center space-x-4">
+              <label className="flex items-center space-x-2 text-xs text-slate-300 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={compareSlm}
+                  onChange={(e) => setCompareSlm(e.target.checked)}
+                  className="w-4 h-4 rounded text-cyan-500 focus:ring-cyan-400 bg-slate-900 border-white/20"
+                />
+                <span>Generate side-by-side Unshielded SLM comparison</span>
+              </label>
+              <span className="text-[11px] text-slate-500 font-mono hidden sm:inline">
+                (Press Enter ↵ to run)
+              </span>
+            </div>
 
-            <button
-              onClick={() => handleRun()}
-              disabled={isLoading}
-              className="px-6 py-2.5 rounded-xl text-xs font-bold text-slate-950 bg-cyan-400 hover:bg-cyan-300 disabled:opacity-50 transition-all flex items-center space-x-2 shadow-lg shadow-cyan-400/25"
-            >
-              {isLoading ? (
-                <span>Evaluating IndicShield Gate...</span>
-              ) : (
-                <span>Analyze Prompt Now →</span>
+            <div className="flex items-center space-x-2">
+              {isLoading && (
+                <button
+                  type="button"
+                  onClick={() => setIsLoading(false)}
+                  className="px-3 py-2 rounded-xl text-xs font-mono text-rose-300 bg-rose-950/40 border border-rose-500/30 hover:bg-rose-900/40"
+                >
+                  Cancel
+                </button>
               )}
-            </button>
+
+              <button
+                onClick={() => handleRun()}
+                disabled={isLoading || !prompt.trim()}
+                className="px-6 py-2.5 rounded-xl text-xs font-bold text-slate-950 bg-cyan-400 hover:bg-cyan-300 disabled:opacity-40 transition-all flex items-center space-x-2 shadow-lg shadow-cyan-400/25"
+              >
+                {isLoading ? (
+                  <span className="flex items-center space-x-2">
+                    <span className="w-3 h-3 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
+                    <span>Evaluating IndicShield Gate...</span>
+                  </span>
+                ) : (
+                  <span>Analyze Prompt Now →</span>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>

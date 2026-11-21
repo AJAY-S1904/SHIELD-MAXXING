@@ -37,18 +37,23 @@ export async function analyzePrompt(
   const t0 = performance.now();
 
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 6000);
+
     const res = await fetch("http://127.0.0.1:8000/api/analyze", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt, include_slm: includeSlm }),
+      signal: controller.signal,
     });
+    clearTimeout(timeoutId);
 
     if (res.ok) {
       const data = await res.json();
       return data as AnalysisResult;
     }
   } catch (err) {
-    console.warn("Backend not directly reachable, engaging local simulation engine:", err);
+    console.warn("Backend not directly reachable or timed out, engaging local simulation engine:", err);
   }
 
   // High-accuracy fallback engine for offline or demonstration mode

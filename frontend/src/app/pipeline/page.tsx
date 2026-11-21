@@ -100,6 +100,13 @@ export default function PipelineXRayPage() {
             rows={3}
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                runXRay();
+              }
+            }}
+            placeholder="Type query to inspect internal layers... (Press Enter to run)"
             className="w-full bg-slate-950/80 rounded-2xl p-4 text-sm text-slate-100 border border-white/10 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 font-mono resize-none"
           />
           <button
