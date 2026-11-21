@@ -1,0 +1,32 @@
+# Dependency and Cache Directories
+node_modules/
+.next/
+.cache/
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# GitHub 100MB File Size Limit Exclusions (Heavy Foundation Model Checkpoints)
+# Foundation models (IndicBERT, Qwen, Abliterated SLM) should be downloaded via HuggingFace
+*.safetensors
+*.bin
+best_full_model.pt
+indicshield_models/**/saved_model/*.safetensors
+indicshield_models/checkpoints/best_full_model.pt
+
+# Allow JEV Fusion Checkpoints & ONNX Export (Under 20MB)
+!indicshield_models/checkpoints/best_fusion_engine.pt
+!indicshield_models/onnx_export/indicshield_jev_fusion.onnx
+!indicshield_models/hf_ready/indicshield_jev_fusion.pt
+!indicshield_models/hf_ready/indicshield_jev_fusion.onnx
+
+# OS metadata
+Thumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/

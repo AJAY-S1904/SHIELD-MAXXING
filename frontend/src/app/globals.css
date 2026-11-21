@@ -1,0 +1,261 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+/* ─── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0; padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #03080f;
+  color: #ddeeff;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── MESH GRADIENT BACKGROUND ─────────────────────────── */
+.mesh-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 100% 80% at 15% -10%,  rgba(0,100,200,0.5) 0%, transparent 55%),
+    radial-gradient(ellipse 70%  60% at 85%  20%,  rgba(0,180,180,0.25) 0%, transparent 50%),
+    radial-gradient(ellipse 80%  90% at 50% 110%,  rgba(0,60,160,0.4)  0%, transparent 60%),
+    #03080f;
+}
+
+/* ─── GLASS ─────────────────────────────────────────────── */
+.glass {
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+}
+.glass-md {
+  background: rgba(255,255,255,0.065);
+  border: 1px solid rgba(255,255,255,0.13);
+  backdrop-filter: blur(28px) saturate(170%);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+}
+.glass-strong {
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(36px) saturate(190%);
+  -webkit-backdrop-filter: blur(36px) saturate(190%);
+}
+
+/* ─── NAV ───────────────────────────────────────────────── */
+.nav-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(3,8,15,0.7);
+  border-bottom: 1px solid rgba(0,180,255,0.12);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* ─── BUTTONS ───────────────────────────────────────────── */
+.btn-glow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%);
+  border: 1px solid rgba(0,200,255,0.5);
+  border-radius: 12px;
+  color: #fff; font-weight: 700; font-size: 15px;
+  cursor: pointer; text-decoration: none;
+  box-shadow: 0 0 40px rgba(0,140,220,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+}
+.btn-glow:hover {
+  background: linear-gradient(135deg, #00aaee 0%, #0066cc 100%);
+  box-shadow: 0 0 60px rgba(0,180,255,0.6), inset 0 1px 0 rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 28px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 12px;
+  color: rgba(220,240,255,0.9); font-weight: 600; font-size: 15px;
+  cursor: pointer; text-decoration: none;
+  transition: all 0.2s ease;
+}
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(0,200,255,0.3);
+  color: #fff;
+}
+.btn-sm {
+  padding: 9px 20px; font-size: 13px; border-radius: 9px;
+}
+
+/* ─── TEXTAREA ──────────────────────────────────────────── */
+.prompt-input {
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  color: #e8f4ff;
+  font-family: inherit;
+  font-size: 15px; line-height: 1.65;
+  padding: 18px 70px 18px 20px;
+  resize: none; outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.prompt-input::placeholder { color: rgba(160,210,255,0.3); }
+.prompt-input:focus {
+  border-color: rgba(0,180,255,0.5);
+  box-shadow: 0 0 0 3px rgba(0,160,255,0.1), 0 0 30px rgba(0,100,200,0.2);
+}
+
+/* ─── VERDICT ───────────────────────────────────────────── */
+.verdict-safe    { border-color: rgba(0,220,140,0.45) !important; box-shadow: 0 0 50px rgba(0,220,140,0.1); }
+.verdict-blocked { border-color: rgba(255,50,80,0.5)  !important; box-shadow: 0 0 50px rgba(255,50,80,0.12); }
+
+/* ─── PILL BADGE ────────────────────────────────────────── */
+.badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 11px; border-radius: 100px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  border: 1px solid;
+}
+.badge-blue   { background:rgba(0,160,255,0.12); border-color:rgba(0,160,255,0.35); color:#70d8ff; }
+.badge-green  { background:rgba(0,210,130,0.12); border-color:rgba(0,210,130,0.35); color:#70ffc0; }
+.badge-red    { background:rgba(255,50,80,0.12); border-color:rgba(255,50,80,0.35);  color:#ff9090; }
+.badge-purple { background:rgba(140,80,255,0.12);border-color:rgba(140,80,255,0.35);color:#c8a0ff; }
+.badge-amber  { background:rgba(255,170,0,0.12); border-color:rgba(255,170,0,0.35); color:#ffd070; }
+
+/* ─── SLM ARENA ─────────────────────────────────────────── */
+.slm-danger { background: rgba(255,30,60,0.06); border: 1px solid rgba(255,50,80,0.25); }
+.slm-safe   { background: rgba(0,200,120,0.06); border: 1px solid rgba(0,200,120,0.25); }
+.slm-output { font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 13px; line-height: 1.7; }
+
+/* ─── RISK BAR ──────────────────────────────────────────── */
+.risk-track { height: 6px; background: rgba(255,255,255,0.08); border-radius:100px; overflow:hidden; }
+.risk-fill  { height: 100%; border-radius:100px; transition: width 1s cubic-bezier(0.16,1,0.3,1); }
+
+/* ─── HOW IT WORKS STEPS ────────────────────────────────── */
+.step-connector {
+  position: absolute; left: 27px; top: 56px; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(0,180,255,0.4) 0%, transparent 100%);
+}
+
+/* ─── STAT CARD ─────────────────────────────────────────── */
+.stat-card {
+  position: relative; overflow: hidden;
+  padding: 28px 24px; border-radius: 20px;
+  transition: transform 0.2s ease;
+}
+.stat-card:hover { transform: translateY(-3px); }
+.stat-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 60%, rgba(255,255,255,0.03));
+  pointer-events: none;
+}
+
+/* ─── SECTION ───────────────────────────────────────────── */
+.section { padding: 100px 0; position: relative; z-index: 1; }
+.section-sm { padding: 60px 0; position: relative; z-index: 1; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ─── TAG ───────────────────────────────────────────────── */
+.section-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 100px;
+  background: rgba(0,180,255,0.1); border: 1px solid rgba(0,180,255,0.25);
+  color: #70d8ff; font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 20px;
+}
+
+/* ─── SCROLLBAR ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: rgba(0,0,0,0); }
+::-webkit-scrollbar-thumb { background: rgba(0,160,255,0.3); border-radius:100px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,200,255,0.5); }
+
+/* ─── KEYFRAMES ─────────────────────────────────────────── */
+@keyframes float-shield {
+  0%,100% { transform: translateY(0px) rotate(-2deg); }
+  50%      { transform: translateY(-18px) rotate(2deg); }
+}
+@keyframes glow-pulse {
+  0%,100% { box-shadow: 0 0 40px rgba(0,140,255,0.4), 0 0 80px rgba(0,80,200,0.2); }
+  50%      { box-shadow: 0 0 70px rgba(0,180,255,0.7), 0 0 120px rgba(0,120,255,0.3); }
+}
+@keyframes ring-expand {
+  0%   { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(24px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+@keyframes scan-line {
+  0%   { transform: translateY(-100%); opacity: 0.8; }
+  100% { transform: translateY(400%);  opacity: 0; }
+}
+@keyframes shimmer-move {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+@keyframes ping-soft {
+  75%,100% { transform: scale(2); opacity: 0; }
+}
+
+.float-shield   { animation: float-shield 5s ease-in-out infinite; }
+.glow-pulse     { animation: glow-pulse 3s ease-in-out infinite; }
+.spin-anim      { animation: spin 1s linear infinite; }
+.fade-up        { animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) both; }
+.ping-soft      { animation: ping-soft 1.5s cubic-bezier(0,0,0.2,1) infinite; }
+
+.d100 { animation-delay: 0.1s; }
+.d200 { animation-delay: 0.2s; }
+.d300 { animation-delay: 0.3s; }
+.d400 { animation-delay: 0.4s; }
+.d500 { animation-delay: 0.5s; }
+.d600 { animation-delay: 0.6s; }
+
+/* ─── TICKER TAPE ───────────────────────────────────────── */
+.ticker-wrap { overflow: hidden; border-top: 1px solid rgba(0,180,255,0.12); border-bottom: 1px solid rgba(0,180,255,0.12); }
+.ticker-track { display: flex; white-space: nowrap; animation: ticker 30s linear infinite; }
+.ticker-item {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 10px 32px; font-size: 12px; font-weight: 600;
+  color: rgba(140,200,255,0.6); flex-shrink: 0;
+}
+
+/* ─── NAV LINK ──────────────────────────────────────────── */
+.nav-link {
+  color: rgba(180,220,255,0.65); font-size: 14px; font-weight: 500;
+  text-decoration: none; transition: color 0.15s ease; cursor: pointer;
+}
+.nav-link:hover { color: #fff; }
+
+/* ─── SHIMMER SKELETON ──────────────────────────────────── */
+.shimmer { position: relative; overflow: hidden; background: rgba(255,255,255,0.04); }
+.shimmer::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+  animation: shimmer-move 1.8s ease infinite;
+}
+
+/* ─── GRID PATTERNS ─────────────────────────────────────── */
+.grid-pattern {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,180,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,180,255,0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 100%);
+}

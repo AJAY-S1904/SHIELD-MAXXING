@@ -1,0 +1,7 @@
+{
+  "train_count": 3342,
+  "val_count": 429,
+  "test_count": 463,
+  "total_groups": 2640,
+  "schema_version": "0.1.0"
+}

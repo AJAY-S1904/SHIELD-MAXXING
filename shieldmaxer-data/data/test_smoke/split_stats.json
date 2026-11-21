@@ -1,0 +1,123 @@
+{
+  "train": {
+    "groups": 2112,
+    "records": 3342,
+    "labels": {
+      "unsafe": 2531,
+      "safe": 811
+    },
+    "languages": {
+      "be": 162,
+      "ar": 303,
+      "en": 1489,
+      "hi": 163,
+      "bn": 153,
+      "zh": 154,
+      "it": 152,
+      "vi": 154,
+      "ko": 154,
+      "th": 154,
+      "sw": 150,
+      "jv": 154
+    },
+    "scripts": {
+      "native": 780,
+      "mixed": 2,
+      "latin": 2099,
+      "unknown": 461
+    },
+    "categories": {
+      "criminal": 135,
+      "violence": 433,
+      "hate": 267,
+      "privacy": 103,
+      "sexual": 112,
+      "other": 8,
+      "misinfo": 132,
+      "fraud": 156,
+      "self_harm": 39,
+      "weapons": 62,
+      "drugs": 5,
+      "cyber": 47
+    }
+  },
+  "val": {
+    "groups": 264,
+    "records": 429,
+    "labels": {
+      "safe": 107,
+      "unsafe": 322
+    },
+    "languages": {
+      "be": 20,
+      "ar": 38,
+      "en": 186,
+      "hi": 19,
+      "bn": 20,
+      "zh": 21,
+      "it": 21,
+      "vi": 21,
+      "ko": 21,
+      "th": 21,
+      "sw": 20,
+      "jv": 21
+    },
+    "scripts": {
+      "native": 97,
+      "latin": 269,
+      "unknown": 63
+    },
+    "categories": {
+      "hate": 50,
+      "weapons": 2,
+      "criminal": 15,
+      "violence": 50,
+      "privacy": 15,
+      "misinfo": 10,
+      "sexual": 12,
+      "self_harm": 1,
+      "cyber": 4,
+      "fraud": 5
+    }
+  },
+  "test": {
+    "groups": 264,
+    "records": 463,
+    "labels": {
+      "safe": 106,
+      "unsafe": 357
+    },
+    "languages": {
+      "be": 18,
+      "ar": 50,
+      "en": 181,
+      "hi": 16,
+      "bn": 25,
+      "zh": 25,
+      "it": 23,
+      "vi": 25,
+      "ko": 25,
+      "th": 25,
+      "sw": 25,
+      "jv": 25
+    },
+    "scripts": {
+      "native": 109,
+      "latin": 279,
+      "unknown": 75
+    },
+    "categories": {
+      "hate": 42,
+      "criminal": 16,
+      "fraud": 7,
+      "sexual": 26,
+      "violence": 48,
+      "misinfo": 12,
+      "weapons": 20,
+      "privacy": 14,
+      "other": 1,
+      "self_harm": 2,
+      "cyber": 4
+    }
+  }
+}

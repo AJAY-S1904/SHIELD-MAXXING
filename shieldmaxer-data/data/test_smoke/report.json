@@ -1,0 +1,63 @@
+{
+  "total_records": 4234,
+  "by_label": {
+    "unsafe": 3210,
+    "safe": 1024
+  },
+  "by_language": {
+    "be": 200,
+    "ar": 391,
+    "en": 1856,
+    "hi": 198,
+    "bn": 198,
+    "zh": 200,
+    "it": 196,
+    "vi": 200,
+    "ko": 200,
+    "th": 200,
+    "sw": 195,
+    "jv": 200
+  },
+  "by_script": {
+    "native": 986,
+    "mixed": 2,
+    "latin": 2647,
+    "unknown": 599
+  },
+  "by_category": {
+    "criminal": 166,
+    "violence": 531,
+    "hate": 359,
+    "privacy": 132,
+    "weapons": 84,
+    "sexual": 150,
+    "fraud": 168,
+    "other": 9,
+    "misinfo": 154,
+    "self_harm": 42,
+    "drugs": 5,
+    "cyber": 55
+  },
+  "by_source": {
+    "l3cube-pune/IndicGuard": 200,
+    "nvidia/Nemotron-Safety-Guard-Dataset-v3": 192,
+    "nvidia/Aegis-AI-Content-Safety-Dataset-2.0": 190,
+    "CohereLabs/aya_redteaming": 198,
+    "DAMO-NLP-SG/MultiJail": 1788,
+    "OpenSafetyLab/Salad-Data": 305,
+    "bench-llm/or-bench": 597,
+    "deepset/prompt-injections": 198,
+    "JailbreakBench/JBB-Behaviors": 187,
+    "TrustAIRLab/in-the-wild-jailbreak-prompts": 379
+  },
+  "romanized_count": 147,
+  "code_mixed_count": 2,
+  "jailbreak_count": 325,
+  "benign_sensitive_count": 298,
+  "license_counts": {
+    "CC-BY-4.0": 1179,
+    "Apache-2.0": 701,
+    "MIT": 2354
+  },
+  "provenance": {}
+}
