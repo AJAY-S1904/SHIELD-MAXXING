@@ -92,7 +92,7 @@ export async function analyzePrompt(
   const isRoleplayJailbreak = hasRoleplay && (hasRestricted || hasTheft);
 
   // 3. Dangerous Substances, Cyberattacks, Rule Overrides
-  const isChemicalOrExplosive = /(meth|crystal meth|methamphetamine|chemical precursor|synthesize|napalm|bomb|poison|cyanide|explosive)/i.test(textLower);
+  const isChemicalOrExplosive = /(meth|crystal meth|methamphetamine|chemical precursor|synthesize|napalm|bomb|poison|cyanide|explosive|sleeping (drugs?|pills?)|drugs?( at home)?|homemade drugs?|sedatives?|ghb|rohypnol|roofies?|chloroform|barbiturate)/i.test(textLower);
   const isDanOrExploit = /(dan mode|do anything now|ignore all (previous |safety )?(rules|instructions)|bypass (safety|firewall|filters)|jailbreak|disable safety|unfiltered response|write ransomware|keylogger|ddos attack|sql injection|zero-day|सभी सुरक्षा नियमों|चोरी|உपेक्षा)/i.test(textLower);
 
   const isThreat = isTheft || isRoleplayJailbreak || isChemicalOrExplosive || isDanOrExploit;

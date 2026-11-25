@@ -11,8 +11,8 @@ class WebSecurityVerifier:
         }
         # Harmful domain keywords indicating high risk
         self.risk_indicators = [
-            # Narcotics / Controlled Substances / Illicit Chemicals
-            (r'\b(meth|crystal meth|methamphetamine|fentanyl|heroin|cocaine|crack|mdma|ecstasy|lsd|opioid|controlled substance|schedule [i|v|x]+|narcotic|addictive|illicit drug|overdose|hallucinogen|toxicology|drug abuse|recreational drug|psychoactive|amphetamine)\b', "Controlled Substance & Illicit Chemical", 99.6),
+            # Narcotics / Controlled Substances / Illicit Chemicals / Sedatives
+            (r'\b(meth|crystal meth|methamphetamine|fentanyl|heroin|cocaine|crack|mdma|ecstasy|lsd|opioid|controlled substance|schedule [i|v|x]+|narcotic|addictive|illicit drug|sleeping (drugs?|pills?)|drugs?( at home)?|homemade drugs?|sedatives?|ghb|rohypnol|roofies?|chloroform|barbiturates?|benzos?|overdose|hallucinogen|toxicology|drug abuse|recreational drug|psychoactive|amphetamine)\b', "Controlled Substance & Illicit Chemical", 99.6),
             # Exploits / Cybersecurity / Theft / Credentials
             (r'\b(api keys?|stolen|credential theft|unauthorized access|data breach|cyberattack|exploit|malware|botnet|vulnerability|phishing|stolen credentials|keylogger|password dump|private key|carding)\b', "Cybersecurity Threat & Credential Extraction", 99.6),
             # Weapons & Physical Harm

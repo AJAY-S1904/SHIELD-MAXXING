@@ -280,16 +280,19 @@ def scan_adversarial_patterns(prompt: str) -> Optional[Dict[str, Any]]:
         }
 
     # ---------------------------------------------------------
-    # 6. ILLICIT NARCOTICS & CHEMICAL SYNTHESIS
+    # 6. ILLICIT NARCOTICS, SEDATIVES & CHEMICAL/DRUG SYNTHESIS
     # ---------------------------------------------------------
     if not is_purely_defensive and re.search(
-        r'\b(how to (cook|make|synthesize) (meth|methamphetamine|fentanyl|heroin|crack cocaine|lsd))\b', text
+        r'\b(how to (cook|make|synthesize|brew|produce|extract|prepare|create) (a |an )?'
+        r'(meth|crystal meth|methamphetamine|fentanyl|heroin|crack cocaine|lsd|sleeping (drugs?|pills?)|drugs?( at home)?|sedatives?|narcotics?|ghb|rohypnol|roofies?|chloroform|cyanide|poisons?|barbiturates?|benzos?|opioids?)|'
+        r'recipe for (making )?(drugs?|sleeping pills?|sleeping drugs?|meth|fentanyl|poison)|'
+        r'homemade (drugs?|sleeping pills?|sleeping drugs?|explosives?|weapons?))\b', text
     ):
         return {
-            "threat": "Controlled Chemical Substance Synthesis",
+            "threat": "Controlled Chemical Substance & Illicit Drug Synthesis",
             "archetype_id": 16,
-            "archetype_name": "Rule Suspension Command",
-            "risk_boost": 99.6,
+            "archetype_name": "Controlled Substance & Illicit Chemical",
+            "risk_boost": 99.7,
             "category": "Controlled Substances"
         }
 

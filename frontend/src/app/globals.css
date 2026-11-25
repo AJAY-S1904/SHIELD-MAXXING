@@ -8,16 +8,25 @@
 .font-display {
   font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
 }
+
 .font-mono {
   font-family: 'JetBrains Mono', monospace;
 }
 
 /* ─── Reset ─────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  margin: 0; padding: 0;
+  margin: 0;
+  padding: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: #0284c7;
   color: #ffffff;
@@ -28,7 +37,10 @@ body {
 
 /* ─── AUTHENTIC FRUTIGER AERO BACKGROUND ─────────────────── */
 .frutiger-bg {
-  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background:
     radial-gradient(ellipse 90% 65% at 80% 25%, rgba(74, 222, 128, 0.45) 0%, transparent 60%),
     radial-gradient(ellipse 75% 55% at 15% 15%, rgba(56, 189, 248, 0.6) 0%, transparent 55%),
@@ -44,12 +56,14 @@ body {
     radial-gradient(ellipse 150% 45% at 50% 65%, rgba(255, 255, 255, 0.22) 0%, transparent 65%);
 }
 
+
 .aurora-lines {
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg width='1400' height='900' viewBox='0 0 1400 900' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-100 380C300 180 750 600 1500 280' stroke='white' stroke-opacity='0.28' stroke-width='3'/%3E%3Cpath d='M-100 450C330 250 820 670 1500 350' stroke='white' stroke-opacity='0.18' stroke-width='2'/%3E%3Cpath d='M-100 520C360 320 890 740 1500 420' stroke='white' stroke-opacity='0.1' stroke-width='1.5'/%3E%3C/svg%3E");
   background-size: cover;
   opacity: 0.95;
 }
+
 
 /* ─── TEXT REFLECTION ───────────────────────────────────── */
 .text-reflect {
@@ -89,6 +103,7 @@ body {
   box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.4);
 }
 
+
 /* ─── AERO GEL CAPSULE BUTTONS ──────────────────────────── */
 .btn-aero-green {
   position: relative;
@@ -123,6 +138,7 @@ body {
   filter: brightness(1.06);
 }
 
+
 .btn-aero-blue {
   position: relative;
   display: inline-flex;
@@ -142,6 +158,7 @@ body {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
   overflow: hidden;
 }
+
 .btn-aero-blue::after {
   content: '';
   position: absolute;
@@ -150,6 +167,7 @@ body {
   border-radius: 9999px;
   pointer-events: none;
 }
+
 .btn-aero-blue:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 28px rgba(8, 145, 178, 0.55), inset 0 1.5px 2.5px #fff;
@@ -198,11 +216,46 @@ body {
   text-shadow: 0 1px 2px rgba(0, 30, 60, 0.25);
 }
 
+.verdict-blocked {
+  border-color: rgba(255, 50, 80, 0.5) !important;
+  box-shadow: 0 0 50px rgba(255, 50, 80, 0.12);
+}
+
 .aero-pill-active {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.3) 100%);
   border-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15), inset 0 1px 1.5px #fff;
   color: #ffffff;
+}
+
+.badge-blue {
+  background: rgba(0, 160, 255, 0.12);
+  border-color: rgba(0, 160, 255, 0.35);
+  color: #70d8ff;
+}
+
+.badge-green {
+  background: rgba(0, 210, 130, 0.12);
+  border-color: rgba(0, 210, 130, 0.35);
+  color: #70ffc0;
+}
+
+.badge-red {
+  background: rgba(255, 50, 80, 0.12);
+  border-color: rgba(255, 50, 80, 0.35);
+  color: #ff9090;
+}
+
+.badge-purple {
+  background: rgba(140, 80, 255, 0.12);
+  border-color: rgba(140, 80, 255, 0.35);
+  color: #c8a0ff;
+}
+
+.badge-amber {
+  background: rgba(255, 170, 0, 0.12);
+  border-color: rgba(255, 170, 0, 0.35);
+  color: #ffd070;
 }
 
 /* ─── 3D ORB STYLES ─────────────────────────────────────── */
@@ -214,6 +267,17 @@ body {
   align-items: center;
   justify-content: center;
   perspective: 900px;
+}
+
+.slm-safe {
+  background: rgba(0, 200, 120, 0.06);
+  border: 1px solid rgba(0, 200, 120, 0.25);
+}
+
+.slm-output {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 13px;
+  line-height: 1.7;
 }
 
 .aero-orb {
@@ -231,6 +295,12 @@ body {
   cursor: grab;
 }
 .aero-orb:active { cursor: grabbing; }
+
+.risk-fill {
+  height: 100%;
+  border-radius: 100px;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
 /* Glossy highlight on orb */
 .aero-orb::before {
@@ -286,6 +356,7 @@ body {
   transform: translateY(-50%);
 }
 
+
 /* Concentric ripples under the orb */
 .orb-ripple {
   position: absolute;
@@ -305,6 +376,10 @@ body {
   100% { transform: rotateX(72deg) rotateY(-18deg) rotateZ(360deg); }
 }
 
+.nav-link:hover {
+  color: #fff;
+}
+
 @keyframes core-pulse {
   0% { transform: scale(0.9); opacity: 0.6; }
   100% { transform: scale(1.15); opacity: 0.95; }
@@ -314,7 +389,6 @@ body {
   0% { transform: rotateX(65deg) scale(0.9); opacity: 0.4; }
   100% { transform: rotateX(65deg) scale(1.15); opacity: 0.8; }
 }
-
 /* ─── SCROLLBAR ─────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); }
